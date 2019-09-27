@@ -43,68 +43,12 @@ namespace SimuladorProcesos
                     }
                     if (proceso.Prioridad < 3)
                     {
-                        //Process Status to Running as its Under Execution
                         proceso.Estado = "RUNNING";
                         updateDataGridView(dataGridView, procesos);
                         executionTimer(quantum);
-
-                        //Remove the quantum time from the remaining time
-                        //proceso.TiempoRestante = proceso.TiempoRestante - quantum;
-
-                        //Swap Process to Ready State after execution and continue for next
                         proceso.Estado = "READY";
                         updateDataGridView(dataGridView, procesos);
                     }
-                    ////Check if the process has any burst time left
-                    //else if (proceso.TiempoRestante > 0)
-                    //{
-                    //    //Continue the loop, as a process is executing now and we need to recheck for others
-                    //    executionFinished = false;
-
-                    //    //Check if the process remaining time is greater than quantum
-                    //    if (proceso.TiempoRestante > quantum)
-                    //    {
-                    //        //Process Status to Running as its Under Execution
-                    //        proceso.Estado = "RUNNING";
-                    //        updateDataGridView(dataGridView, procesos);
-                    //        executionTimer(quantum);
-
-                    //        //Remove the quantum time from the remaining time
-                    //        proceso.TiempoRestante = proceso.TiempoRestante - quantum;
-
-                    //        //Swap Process to Ready State after execution and continue for next
-                    //        proceso.Estado = "READY";
-                    //        updateDataGridView(dataGridView, procesos);
-                    //    }
-                    //    //Only runs when the process is on its last cpu burst cycle
-                    //    else
-                    //    {
-                    //        //Check if the process has an IO left before it finishes its last cpu burst cycle
-                    //        while (proceso.IO > 0)
-                    //        {
-                    //            ioExecution(procesos, proceso.Id, proceso.IO);
-                    //            proceso.IO = proceso.IO - 1;
-                    //        }
-
-                    //        //Process Status to Running as its Under Execution
-                    //        proceso.Estado = "RUNNING";
-                    //        updateDataGridView(dataGridView, procesos);
-                    //        executionTimer(proceso.TiempoRestante);
-
-                    //        //Set remaining time to 0, as the last cpu burst ended
-                    //        proceso.TiempoRestante = 0;
-
-                    //        //Change Process Status to Completed
-                    //        proceso.Estado = "COMPLETED";
-                    //        updateDataGridView(dataGridView, procesos);
-                    //    }
-                    //}
-                    ////Execute Single IO after every CPU burst cycle
-                    //if (proceso.IO > 0)
-                    //{
-                    //    ioExecution(procesos, proceso.Id, proceso.IO);
-                    //    proceso.IO = proceso.IO - 1;
-                    //}
                 }
                 foreach (var procesom in procesos)
                 {
@@ -116,43 +60,19 @@ namespace SimuladorProcesos
                     }
                     if (procesom.Prioridad < 2)
                     {
-                        //Process Status to Running as its Under Execution
                         procesom.Estado = "RUNNING";
                         updateDataGridView(dataGridView, procesos);
                         executionTimer(quantum);
-
-                        //Remove the quantum time from the remaining time
-                        //proceso.TiempoRestante = proceso.TiempoRestante - quantum;
-
-                        //Swap Process to Ready State after execution and continue for next
                         procesom.Estado = "READY";
                         updateDataGridView(dataGridView, procesos);
                     }
                 }
                 foreach (var procesob in procesos)
                 {
-                    if (procesob.Prioridad == 1)
-                    {
                         procesob.Estado = "COMPLETED";
                         updateDataGridView(dataGridView, procesos);
                         procesob.TiempoRestante = 0;
-                    }
-                    if (procesob.Prioridad < 1)
-                    {
-                        //Process Status to Running as its Under Execution
-                        procesob.Estado = "RUNNING";
-                        updateDataGridView(dataGridView, procesos);
-                        executionTimer(quantum);
-
-                        //Remove the quantum time from the remaining time
-                        //proceso.TiempoRestante = proceso.TiempoRestante - quantum;
-
-                        //Swap Process to Ready State after execution and continue for next
-                        procesob.Estado = "READY";
-                        updateDataGridView(dataGridView, procesos);
-                    }
                 }
-                //When All Processes have completed their execution
                 if (executionFinished == true)
                 {
                     break;
