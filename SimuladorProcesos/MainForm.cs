@@ -110,7 +110,7 @@ namespace SimuladorProcesos
 
         private void refernciaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("TANENBAUM Andrew (Pagina: 84)", "Sistemas Operativos");
+            MessageBox.Show("Stalling (Pagina: 433)", "Sistemas Operativos");
         }
 
         private void reseñaToolStripMenuItem_Click(object sender, EventArgs e)
